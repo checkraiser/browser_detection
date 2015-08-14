@@ -23,6 +23,7 @@ end
 gem 'jquery-rails'
 gem 'rails_12factor', group: :production
 gem 'devise'
+gem 'browser'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
