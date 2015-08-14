@@ -1,6 +1,6 @@
 BrowserDetection::Application.routes.draw do
 
-  devise_for :users, controllers: { sessions: 'devise/my_devise/sessions' }
+  devise_for :users, controllers: { sessions: 'my_devise/sessions' }
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
