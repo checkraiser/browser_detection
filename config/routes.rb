@@ -1,9 +1,12 @@
 BrowserDetection::Application.routes.draw do
+
   devise_for :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
-
+  root :to => 'home#index'
+  get '/about' => 'home#about', :as => :about
+  get '/contact' => 'home#contact', :as => :contact
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
