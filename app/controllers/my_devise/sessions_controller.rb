@@ -57,11 +57,11 @@ class MyDevise::SessionsController < Devise::SessionsController
       resource.ip = get_client_ip
       resource.os = get_operating_system
       if resource.save
-        begin
+        #begin
           LoginNotifier.send_client_info(resource).deliver
-        rescue Net::SMTPAuthenticationError, Net::SMTPServerBusy, Net::SMTPSyntaxError, Net::SMTPFatalError, Net::SMTPUnknownError => e
-          console.log e.inspect
-        end
+        #rescue Net::SMTPAuthenticationError, Net::SMTPServerBusy, Net::SMTPSyntaxError, Net::SMTPFatalError, Net::SMTPUnknownError => e
+         # console.log e.inspect
+        #end
       end
     end
   end
