@@ -56,8 +56,13 @@ class MyDevise::SessionsController < Devise::SessionsController
       resource.browser = get_browser
       resource.ip = get_client_ip
       resource.os = get_operating_system
-      resource.save!
-      LoginNotifier.send_client_info(resource).deliver
+      if resource.save
+        begin
+          LoginNotifier.send_client_info(resource).deliver
+        rescue Net::SMTPAuthenticationError, Net::SMTPServerBusy, Net::SMTPSyntaxError, Net::SMTPFatalError, Net::SMTPUnknownError => e
+          flash[:error] = "System error"
+        end
+      end
     end
   end
 end
