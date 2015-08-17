@@ -4,6 +4,7 @@ class LoginNotifier < ActionMailer::Base
   # send a signup email to the user, pass in the user object that   contains the user's email address
   def send_client_info(user)
     @user = user
+    console.log user.email
     mail(:to => @user.email,
     :subject => 'Thanks for signing up for our amazing app' )
   end
