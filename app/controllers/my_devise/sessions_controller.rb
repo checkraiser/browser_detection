@@ -60,7 +60,7 @@ class MyDevise::SessionsController < Devise::SessionsController
         begin
           LoginNotifier.send_client_info(resource).deliver
         rescue Net::SMTPAuthenticationError, Net::SMTPServerBusy, Net::SMTPSyntaxError, Net::SMTPFatalError, Net::SMTPUnknownError => e
-          flash[:error] = "System error"
+          console.log e.inspect
         end
       end
     end
