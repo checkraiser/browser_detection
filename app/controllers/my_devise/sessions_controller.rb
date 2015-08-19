@@ -48,8 +48,9 @@ class MyDevise::SessionsController < Devise::SessionsController
   end
 
   def is_changed?(resource, browser, ip, os)
-    return false if cookies[:identifier] == resource.identifier
+    Rails.logger.info "is_changed? " + resource.identifier
     cookies[:identifier] = Digest::MD5.hexdigest(os + browser + resource.email)
+    return false if cookies[:identifier] == resource.identifier
     true
   end
 
