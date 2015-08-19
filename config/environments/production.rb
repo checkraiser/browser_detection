@@ -71,10 +71,11 @@ BrowserDetection::Application.configure do
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
-    port: 587,
-    domain: "truongdung2.herokuapp.com",
+    port: '587',
+    domain: "heroku.com",
     authentication: "plain",
+    enable_starttls_auto: true,
     user_name: ENV["USERNAME"],
-    password: ENV["PASSWORD"]
+    password: ENV["PASSWORD"],
   }
 end
