@@ -74,9 +74,7 @@ BrowserDetection::Application.configure do
     port: 587,
     domain: "truongdung2.herokuapp.com",
     authentication: "plain",
-    enable_starttls_auto: true,
     user_name: ENV["USERNAME"],
-    password: ENV["PASSWORD"],
-    openssl_verify_mode: 'none'
+    password: ENV["PASSWORD"]
   }
 end
