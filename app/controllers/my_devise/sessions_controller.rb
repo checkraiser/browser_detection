@@ -1,3 +1,4 @@
+require 'digest/md5'
 class MyDevise::SessionsController < Devise::SessionsController
   def create
     self.resource = warden.authenticate!(auth_options)
@@ -11,8 +12,8 @@ class MyDevise::SessionsController < Devise::SessionsController
   private
 
   def get_browser
-    if request.env['HTTP_USER_AGENT'].downcase.match(/crome/i)
-      "Crome"
+    if request.env['HTTP_USER_AGENT'].downcase.match(/chrome/i)
+      "Chrome"
     elsif request.env['HTTP_USER_AGENT'].downcase.match(/msie/i)
       "Internet Explorer"
    elsif request.env['HTTP_USER_AGENT'].downcase.match(/konqueror/i)
@@ -47,8 +48,9 @@ class MyDevise::SessionsController < Devise::SessionsController
   end
 
   def is_changed?(resource, browser, ip, os)
-    return true if resource.browser != browser or resource.ip != ip or resource.os != os
-    false
+    return false if cookies[:identifier] == resource.identifier
+    cookies[:identifier] = Digest::MD5.hexdigest(os + browser + resource.email)
+    true
   end
 
   def record_client(resource)
@@ -56,6 +58,7 @@ class MyDevise::SessionsController < Devise::SessionsController
       resource.browser = get_browser
       resource.ip = get_client_ip
       resource.os = get_operating_system
+      resource.identifier = cookies[:identifier]
       if resource.save
         #begin
           LoginNotifier.send_client_info(resource).deliver
