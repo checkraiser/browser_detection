@@ -76,6 +76,7 @@ BrowserDetection::Application.configure do
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV["USERNAME"],
-    password: ENV["PASSWORD"]
+    password: ENV["PASSWORD"],
+    openssl_verify_mode: 'none'
   }
 end
