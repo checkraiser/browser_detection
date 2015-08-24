@@ -10,6 +10,6 @@ class User < ActiveRecord::Base
   def last_sign_in_time
     vn = TZInfo::Country.get('VN')
     zone = vn.zone_identifiers.sample
-    TZInfo::Timezone.get(zone).utc_to_local(self.last_sign_in_at)
+    TZInfo::Timezone.get(zone).utc_to_local(self.last_sign_in_at).strftime("%H:%M %Y/%m/%d")
   end
 end
