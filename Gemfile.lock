@@ -130,4 +130,5 @@ DEPENDENCIES
   rails (= 3.2.21)
   rails_12factor
   sass-rails (~> 3.2.3)
+  tzinfo
   uglifier (>= 1.0.3)
